@@ -143,7 +143,7 @@ public class Password {
 
         // Code here
         if (nbCar < 4){
-            return "false";
+            return null;
         }
 
         SecureRandom random = new SecureRandom();
@@ -169,8 +169,9 @@ public class Password {
         nombre.addAll(lettre);
         nombre.addAll(special);
         nombre.addAll(lettrem);
+
         for (int i = 4; i < nbCar; i++){
-            int j = random.nextInt(23);
+            int j = random.nextInt(64);
             mdp.add((nombre.get(j)));
         }
         Collections.shuffle(mdp);
@@ -181,10 +182,6 @@ public class Password {
         return mdp2;
     }
 
-    private static String toLowerCase(String string) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'toLowerCase'");
-    }
 
     public static void main(String[] args) {
         if (args.length == 0) {
@@ -228,7 +225,7 @@ public class Password {
                 break;
 
             case "4":
-                System.out.println("Generated password: " + generatePassword(10));
+                System.out.println("Generated password: " + generatePassword(50));
                 break;
 
             default:
