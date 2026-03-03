@@ -1,6 +1,8 @@
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -140,8 +142,48 @@ public class Password {
     public static String generatePassword(int nbCar) {
 
         // Code here
+        if (nbCar < 4){
+            return "false";
+        }
 
-        return null;
+        SecureRandom random = new SecureRandom();
+        List<String> special = new ArrayList<>();
+        special.addAll(List.of("&","!","?","§","#","$","£",";"));
+        List<String> lettre = new ArrayList<>();
+        lettre.addAll(List.of("A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"));
+        List<String> lettrem = new ArrayList<>();
+        lettrem.addAll(List.of("a","z","e","r","t","y","u","i","o","p","q","s","d","f","g","h","j","k","l","m","w","x","c","v","b","n"));
+        List<String> nombre = new ArrayList<>();
+        nombre.addAll(List.of("1","2","3","4","5","6","7","8","9","0"));
+        List<String> mdp = new ArrayList<>();
+    
+        int i1 = random.nextInt(7);
+        mdp.add(special.get(i1));
+        int i2 = random.nextInt(23);
+        mdp.add(lettre.get(i2));
+        int i3 = random.nextInt(9);
+        mdp.add(nombre.get(i3));
+        int i4 = random.nextInt(23);
+        mdp.add((lettrem.get(i4)));
+
+        nombre.addAll(lettre);
+        nombre.addAll(special);
+        nombre.addAll(lettrem);
+        for (int i = 4; i < nbCar; i++){
+            int j = random.nextInt(23);
+            mdp.add((nombre.get(j)));
+        }
+        Collections.shuffle(mdp);
+        String mdp2 = "";
+        for (String charac : mdp){
+            mdp2 = mdp2 + charac;
+        }
+        return mdp2;
+    }
+
+    private static String toLowerCase(String string) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'toLowerCase'");
     }
 
     public static void main(String[] args) {
@@ -186,7 +228,7 @@ public class Password {
                 break;
 
             case "4":
-                System.out.println("Generated password: " + generatePassword(12));
+                System.out.println("Generated password: " + generatePassword(10));
                 break;
 
             default:
