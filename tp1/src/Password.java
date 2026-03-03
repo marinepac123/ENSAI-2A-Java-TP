@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 public class Password {
     /**
@@ -41,7 +42,12 @@ public class Password {
     public static String bruteForce6Digit(String targetHash) {
 
         // Code here
-
+        for (int nombre = 0; nombre < 1000000; nombre++) {
+            String nombres = hashPassword(String.format("%06d", nombre));
+            if(Objects.equals(nombres, (targetHash))){
+                return String.format("%06d", nombre);
+            }
+        }
         return null;
     }
 
