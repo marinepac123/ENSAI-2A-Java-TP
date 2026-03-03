@@ -139,7 +139,7 @@ public class Password {
      * @param nbCar The desired length of the password (minimum 4).
      * @return A randomly generated password that meets the security criteria.
      */
-    public static String generatePassword(int nbCar) {
+    public static String generatePassword(int nbCar, Boolean carcspecial) {
 
         // Code here
         if (nbCar < 4){
@@ -157,21 +157,27 @@ public class Password {
         nombre.addAll(List.of("1","2","3","4","5","6","7","8","9","0"));
         List<String> mdp = new ArrayList<>();
     
-        int i1 = random.nextInt(7);
-        mdp.add(special.get(i1));
-        int i2 = random.nextInt(23);
-        mdp.add(lettre.get(i2));
+        Integer k = 3;
+        Integer total = 56;
         int i3 = random.nextInt(9);
         mdp.add(nombre.get(i3));
+        int i2 = random.nextInt(23);
+        mdp.add(lettre.get(i2));
         int i4 = random.nextInt(23);
         mdp.add((lettrem.get(i4)));
+        if (carcspecial){
+        int i1 = random.nextInt(7);
+        mdp.add(special.get(i1));
+        k=4;
+        total = 64;
+        nombre.addAll(special);
+        }
 
         nombre.addAll(lettre);
-        nombre.addAll(special);
         nombre.addAll(lettrem);
 
-        for (int i = 4; i < nbCar; i++){
-            int j = random.nextInt(64);
+        for (int i = k; i < nbCar; i++){
+            int j = random.nextInt(total);
             mdp.add((nombre.get(j)));
         }
         Collections.shuffle(mdp);
@@ -225,7 +231,8 @@ public class Password {
                 break;
 
             case "4":
-                System.out.println("Generated password: " + generatePassword(50));
+                System.out.println("Generated password: " + generatePassword(15,false));
+                System.out.println("Generated password: " + generatePassword(15,true));
                 break;
 
             default:
