@@ -67,9 +67,42 @@ public class Password {
      */
     public static boolean isStrongPassword(String password) {
 
-        // Code here
+        // Code here 
+        /*Il a au moins 12 caractères
+✅ Il contient au moins une lettre majuscule
+✅ Il contient au moins une lettre minuscule
+✅ Il contient au moins un chiffre
+❌ Il ne contient pas d'espace blanc */
 
+        /*
+    Character.isUpperCase(<char>)
+    Character.isDigit(<char>)
+    Character.isWhitespace(<char>)
+ */ 
+        Integer maj =0 ;
+        Integer min = 0;
+        Integer dig = 0;
+        Integer space = 0;
+        for (int i = 0; i < password.length(); i++) {
+            char lettre = password.charAt(i);
+            if (Character.isUpperCase(lettre)){
+                maj = 1;
+            }
+            if (Character.isLowerCase(lettre)){
+                min = 1;
+            }
+            if (Character.isDigit(lettre)){
+                dig = 1;
+            }
+            if (Character.isWhitespace(lettre)){
+                space = 1;
+            }
+            if (password.length() >= 12 && maj==1 && min == 1 && dig == 1 && space!=1){
+                return true;
+            }
+        }
         return false;
+        
     }
 
     /**
