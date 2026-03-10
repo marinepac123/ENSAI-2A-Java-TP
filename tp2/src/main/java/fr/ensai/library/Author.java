@@ -21,6 +21,12 @@ public class Author {
         this.nationality = nationality;
     }
 
+    public Author(String name) {
+        this.name = name;
+        this.age = 25;
+        this.nationality = "Fr";
+    }
+
     public String getName() {
         return this.name;
     }
