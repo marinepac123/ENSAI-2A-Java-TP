@@ -11,27 +11,32 @@ import java.net.URL;
 public class Library {
     // Attributes
     private String name; 
-    private List<Book> books;
+    private List<Item> items;
+    private List<Loan> activeLoans;
+    private List<Loan> completedLoans;
 
     // Constructor
-    public Library(String name, List<Book> books) {
+    public Library(String name, List<Item> items, List<Loan> activeLoans, List<Loan> completedLoans) {
         this.name = name;
-        this.books = books;
+        this.items = items;
+        this.activeLoans = activeLoans;
+        this.completedLoans = completedLoans;
     }
 
     // Method
-    public void addBook(Book book){
-        this.books.add(book);
+    public void addItem(Item item){
+        this.items.add(item);
     }
 
-    public String displayBooks() {
+    public String displayItems() {
         String chaine = ""; 
-        if (this.books.isEmpty()) {
+        if (this.items.isEmpty()) {
             System.out.println("Il n'y a aucun livre dans la library");
         }
         else {
-            for (Book book : this.books){
-            chaine += book.toString();
+            for (Item item : this.items){
+            chaine += item.toString();
+            chaine += " \n ";
             }
         }
         return chaine;
@@ -72,7 +77,7 @@ public class Library {
                     }
                     Book book = new Book(isbn, title, author, year, pageCount);
 
-                    this.addBook(book);
+                    this.addItem(book);
                 }
             }
         } catch (
