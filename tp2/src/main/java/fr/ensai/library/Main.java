@@ -32,8 +32,10 @@ public class Main {
 
         List<Item> books = new ArrayList<>();
         books.add(fellowshipOfTheRing);
+        List<Loan> loan1 = new ArrayList<>();
+        List<Loan> loan2 = new ArrayList<>();
 
-        Library libraryA = new Library("libraryA", books);
+        Library libraryA = new Library("libraryA", books, loan1, loan2);
 
         libraryA.loadBooksFromCSV("books.csv");
         libraryA.addItem(mag1);
