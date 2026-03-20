@@ -1,16 +1,17 @@
 package fr.ensai.mediaplayer;
 
+import java.util.Objects;
+import java.util.List;
+
 /**
  * Represents a song with essential attributes.
  */
-public class Song {
-    private String singer;
-    private String title;
-    private int year;
-    private int duration;
+public class Song extends Media{
+    private Artist singer;
     private String lyrics;
-    private String author;
-    private String composer;
+    private Artist author;
+    private Artist composer;
+    private List<Genre> genres;
 
     /**
      * Constructs a new Song object.
@@ -23,15 +24,16 @@ public class Song {
      * @param lyrics   The lyrics of the song.
      * @param author   The author of the song.
      * @param composer The composer of the song.
+     * @param genres   The genre of the song 
      */
-    public Song(String title, String singer, int year, int duration, String lyrics, String author, String composer) {
-        this.title = title;
+    
+    public Song(String title, Artist singer, int year, int duration, String phrase, Artist author, Artist composer, List<Genre> genres) {
+        super(title, year, duration, phrase);
         this.singer = singer;
-        this.year = year;
-        this.duration = duration;
-        this.lyrics = lyrics;
+        this.lyrics = phrase;
         this.author = author;
         this.composer = composer;
+        this.genres = genres;
     }
 
     /**
@@ -62,5 +64,6 @@ public class Song {
     public int hashCode() {
         return Objects.hash(this.title, this.singer, this.year);
     }
+
 
 }
